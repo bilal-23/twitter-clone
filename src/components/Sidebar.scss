@@ -1,8 +1,12 @@
 @import "../styles/variables";
 
 .sidebar {
+  display: flex;
+  flex-direction: column;
   height: 100vh;
-  padding: 1rem 5em;
+  padding: 1rem 2rem 1rem 3rem;
+  border-right: 1px solid $twitter-background;
+  flex: 0.2;
 
   & > .MuiSvgIcon-root {
     font-size: 3rem;

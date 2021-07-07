@@ -1,0 +1,17 @@
+@import "../styles/variables";
+
+.feedHeader {
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 100;
+  border: 1px solid $twitter-background;
+  padding: 1.5rem 2rem;
+
+  &__text {
+    font-size: 2rem;
+    font-weight: 800;
+  }
+}

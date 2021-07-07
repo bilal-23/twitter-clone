@@ -1,9 +1,11 @@
 import React from 'react'
 import './Feed.scss'
+import FeedHeader from './FeedHeader'
+
 const Feed = () => {
     return (
-        <div>
-            <h2>Hello</h2>
+        <div className="feed">
+            <FeedHeader />
         </div>
     )
 }

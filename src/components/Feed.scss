@@ -1,0 +1,16 @@
+@import "../styles/variables";
+
+.feed {
+  flex: 0.6;
+  border-right: 1px solid $twitter-background;
+  min-width: fit-content;
+  overflow-y: scroll;
+  width: 100%;
+
+  //hide the scrollbar
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none; //chrome,safari,opera
+  }
+}
