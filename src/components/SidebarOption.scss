@@ -1,0 +1,30 @@
+@import "../styles/variables";
+
+.sidebarOption {
+  padding: 1rem;
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 100ms ease-out;
+
+  & > .MuiSvgIcon-root {
+    font-size: 3rem;
+  }
+
+  &__text {
+    color: inherit;
+    text-transform: capitalize;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  &:hover {
+    background-color: $twitter-background;
+    color: $twitter-color;
+    border-radius: 3rem;
+  }
+  &--active {
+    color: $twitter-color;
+  }
+}

@@ -1,0 +1,36 @@
+@import "../styles/variables";
+
+.sidebar {
+  height: 100vh;
+  padding: 1rem 5em;
+
+  & > .MuiSvgIcon-root {
+    font-size: 3rem;
+    color: $twitter-color;
+    margin-left: 1rem;
+  }
+}
+
+.sidebarOptions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.sidebar__button {
+  background-color: $twitter-color !important;
+  font-weight: 700 !important;
+  text-transform: capitalize !important;
+  font-size: 2rem !important;
+  color: white !important;
+  width: 100% !important;
+  border-radius: 3rem !important;
+  outline: none !important;
+  border: none !important;
+
+  &:hover {
+    background-color: $twitter-color-dark !important;
+  }
+}
