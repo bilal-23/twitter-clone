@@ -1,0 +1,49 @@
+@import "../styles/variables";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-left: 2rem;
+
+  &__input {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+
+    & > input {
+      border: none;
+      border-bottom: 1px solid $twitter-background;
+      outline: none;
+      padding: 2rem 0;
+      font-size: 2rem;
+      width: 80%;
+      flex: 1;
+      word-wrap: break-word;
+    }
+  }
+
+  &__button__container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 0;
+    padding-bottom: 0;
+  }
+  &__button {
+    background-color: $twitter-color !important;
+    font-weight: 700 !important;
+    text-transform: capitalize !important;
+    font-size: 1.5rem !important;
+    color: white !important;
+    border-radius: 3rem !important;
+    outline: none !important;
+    border: none !important;
+    padding: 0.8rem 1.2rem !important;
+
+    &:hover {
+      background-color: $twitter-color-dark !important;
+    }
+  }
+}

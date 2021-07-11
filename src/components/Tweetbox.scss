@@ -1,0 +1,15 @@
+@import "../styles/variables";
+
+.tweetbox {
+  position: relative;
+  border: 1px solid $twitter-background;
+  border-top: none;
+  border-bottom: 1rem solid $twitter-background;
+  padding: 1rem 2rem;
+  display: flex;
+
+  &__avatar {
+    position: absolute;
+    top: 1rem;
+  }
+}
