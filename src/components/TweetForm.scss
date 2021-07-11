@@ -10,18 +10,24 @@
   &__input {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     margin-bottom: 1rem;
-
-    & > input {
-      border: none;
-      border-bottom: 1px solid $twitter-background;
-      outline: none;
-      padding: 2rem 0;
-      font-size: 2rem;
-      width: 80%;
-      flex: 1;
-      word-wrap: break-word;
-    }
+  }
+  &__inputField {
+    border: none;
+    border-bottom: 1px solid $twitter-background;
+    outline: none;
+    padding: 2rem 0;
+    font-size: 2rem;
+    width: 100%;
+    flex: 1;
+    word-wrap: break-word;
+  }
+  &__inputImage {
+    padding: 1rem 0;
+    font-size: 1.5rem;
+    width: 50%;
+    margin-top: 1rem;
   }
 
   &__button__container {
@@ -40,6 +46,7 @@
     border-radius: 3rem !important;
     outline: none !important;
     border: none !important;
+    width: 10rem;
     padding: 0.8rem 1.2rem !important;
 
     &:hover {
