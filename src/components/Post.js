@@ -26,7 +26,7 @@ const Post = ({ displayName, userName, verified, timestamp, text, image, avatar 
                     </div>
                 </div>
                 <div className="post__img">
-                    <img src="https://pbs.twimg.com/media/E6ANOyeUYAINlda?format=png&name=small" />
+                    <img src="https://pbs.twimg.com/media/E6ANOyeUYAINlda?format=png&name=small" alt="" />
                 </div>
                 <div className="post__footer">
                     <ChatBubbleOutline className="post__footer__icons icon icon__comment" />
