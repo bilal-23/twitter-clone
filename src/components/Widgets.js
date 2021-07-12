@@ -13,14 +13,14 @@ const Widgets = () => {
         <div className="widgets">
             <div className="widgets__inputs">
                 <SearchIcon className="widgets__searchIcon" />
-                <input type="text" placeholder="Search Twitter" />
+                <input type="text" placeholder="Search Twitter" className="widgets__inputField" />
             </div>
             <div className="widgets__widgetContainer">
                 <h2>What's happening ?</h2>
                 <TwitterTweetEmbed tweetId={"1414223227782635525"} />
                 <TwitterTimelineEmbed
                     sourceType="profile"
-                    screenName="bilalmansuri2e"
+                    screenName="spacedotcom"
                     options={{ height: 400 }}
                 />
                 <TwitterShareButton

@@ -8,7 +8,7 @@ const SidebarOption = ({ active = false, Icon, text }) => {
         <div className={`sidebarOption ${active && 'sidebarOption--active'}`}>
             <Icon className="sidebarOption__icon" />
 
-            {dimension.width > 1200 && <p className="sidebarOption__text" >{text}</p>}
+            {dimension.width > 1250 && <p className="sidebarOption__text" >{text}</p>}
         </div>
     )
 }
