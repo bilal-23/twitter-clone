@@ -1,4 +1,5 @@
 @import "../styles/variables";
+@import "../styles/mixins";
 
 .feedHeader {
   display: flex;
@@ -9,6 +10,10 @@
   z-index: 100;
   border: 1px solid $twitter-background;
   padding: 1.5rem 2rem;
+
+  @include respond(phone) {
+    padding: 1rem;
+  }
 
   &__text {
     font-size: 2rem;

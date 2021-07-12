@@ -26,8 +26,6 @@ const Sidebar = () => {
                 {sidebarOptions.map((item, index) => <SidebarOption key={index} active={item?.active} text={item.text} Icon={item.Icon} />)}
             </div>
             {dimension.width > 1250 && <Button variant="outlined" className="sidebar__button">tweet</Button>}
-
-
         </div>
     )
 }

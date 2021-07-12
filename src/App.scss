@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap");
 @import "./styles/variables.scss";
+@import "./styles/mixins.scss";
 
 body {
   font-family: "Montserrat", sans-serif;
@@ -11,4 +12,16 @@ body {
   height: 100vh;
   max-width: 130rem;
   margin: 0 auto;
+
+  @include respond(tab-land) {
+    grid-template-columns: 10% 50% 40%;
+  }
+  @include respond(tab-port) {
+    padding: 0 4rem;
+    grid-template-columns: 10% 90%;
+  }
+  @include respond(phone) {
+    padding: 0;
+    grid-template-columns: 15% 85%;
+  }
 }
