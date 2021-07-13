@@ -7,27 +7,24 @@ const Post = ({ displayName, userName, verified, timestamp, text, image, avatar 
     return (
         <div className="post">
             <div className="post__avatar">
-                <Avatar src="https://avatars.githubusercontent.com/u/71442068?v=4" />
+                <Avatar src={avatar} />
             </div>
             <div className="post__body">
                 <div className="post__header">
                     <div className="post__headerText">
-                        <h3>Bilal Mansuri
+                        <h3>{displayName}
                             <span className="post__headerSpan">
-                                <VerifiedUserRounded className="post__badge" /> @bilal
+                                {verified && <VerifiedUserRounded className="post__badge" />} @{userName}
                             </span>
                         </h3>
                     </div>
                     <div className="post__headerDescription">
-                        <p>Special thanks to
-                            @KevinJPowell
-                            , whose channel has wonderful videos on CSS.
-                            The tutorials on position property helped me a great deal in understanding the property, and completing this blog!</p>
+                        <p>{text}</p>
                     </div>
                 </div>
-                <div className="post__img">
-                    <img src="https://pbs.twimg.com/media/E6ANOyeUYAINlda?format=png&name=small" alt="" />
-                </div>
+                {image && <div className="post__img">
+                    <img src={image} alt="" />
+                </div>}
                 <div className="post__footer">
                     <ChatBubbleOutline className="post__footer__icons icon icon__comment" />
                     <Repeat className="post__footer__icons icon icon__retweet" />

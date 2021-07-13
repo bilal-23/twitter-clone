@@ -1,16 +1,28 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import './TweetForm.scss'
 import { Button } from '@material-ui/core'
 
-const TweetForm = () => {
+const TweetForm = ({ postTweet }) => {
+    const textRef = useRef();
+    const imageRef = useRef();
+
+    const formSubmitHandler = () => {
+        const text = textRef.current?.value?.trim();
+        const image = imageRef.current?.value?.trim();
+        if (text === "") { return }
+        postTweet(text, image);
+        textRef.current.value = "";
+        imageRef.current.value = "";
+
+    }
     return (
         <form className="form">
             <div className="form__input">
-                <input type="text" placeholder="What's happening ?" className="form__inputField" />
-                <input type="text" placeholder="Enter image url" className="form__inputImage form__inputField" />
+                <input type="text" placeholder="What's happening ?" className="form__inputField" ref={textRef} />
+                <input type="text" placeholder="Enter image url" className="form__inputImage form__inputField" ref={imageRef} />
             </div>
             <div className="form__button__container">
-                <Button className="form__button">Tweet</Button>
+                <Button className="form__button" onClick={formSubmitHandler}>Tweet</Button>
             </div>
         </form>
     )
