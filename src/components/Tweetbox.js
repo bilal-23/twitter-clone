@@ -13,7 +13,8 @@ const Tweetbox = () => {
             verified: true,
             text: text,
             image: image,
-            avatar: "https://avatars.githubusercontent.com/u/71442068?v=4"
+            avatar: "https://avatars.githubusercontent.com/u/71442068?v=4",
+            timestamp: Date.now()
         })
     }
 

@@ -22,7 +22,7 @@ const TweetForm = ({ postTweet }) => {
                 <input type="text" placeholder="Enter image url" className="form__inputImage form__inputField" ref={imageRef} />
             </div>
             <div className="form__button__container">
-                <Button className="form__button" onClick={formSubmitHandler}>Tweet</Button>
+                <Button type="submit" className="form__button" onClick={formSubmitHandler}>Tweet</Button>
             </div>
         </form>
     )
