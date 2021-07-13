@@ -6,7 +6,8 @@ const TweetForm = ({ postTweet }) => {
     const textRef = useRef();
     const imageRef = useRef();
 
-    const formSubmitHandler = () => {
+    const formSubmitHandler = (e) => {
+        e.preventDefault();
         const text = textRef.current?.value?.trim();
         const image = imageRef.current?.value?.trim();
         if (text === "") { return }
