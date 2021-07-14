@@ -21,6 +21,9 @@
     @include respond(tab-port) {
       height: 40%;
     }
+    @include respond(phone) {
+      height: 50%;
+    }
   }
   &__twitterIcon {
     position: absolute !important;
@@ -39,7 +42,8 @@
       height: 60%;
     }
     @include respond(phone) {
-      padding-top: 6rem;
+      padding-top: 12rem;
+      height: 50%;
     }
 
     & > .twitter {
