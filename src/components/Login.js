@@ -15,7 +15,7 @@ const Login = () => {
                     <p>Join Twitter today</p>
                 </div>
                 <div className="login__form">
-                    <button>Sign in with</button>
+                    <button>Sign in with Google</button>
                 </div>
             </div>
         </div>
