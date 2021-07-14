@@ -1,0 +1,90 @@
+@import "../styles/variables";
+@import "../styles/mixins";
+.login {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 100vh;
+  width: 100%;
+
+  @include respond(tab-port) {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  &__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("https://abs.twimg.com/sticky/illustrations/lohp_en_850x623.png");
+    position: relative;
+
+    @include respond(tab-port) {
+      height: 40%;
+    }
+  }
+  &__twitterIcon {
+    position: absolute !important;
+    font-size: 30rem !important;
+    color: #fff !important;
+  }
+
+  &__body {
+    position: relative;
+    padding: 3rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include respond(tab-port) {
+      height: 60%;
+    }
+    @include respond(phone) {
+      padding-top: 6rem;
+    }
+
+    & > .twitter {
+      position: absolute !important;
+      top: 10% !important;
+      left: 5% !important;
+      color: $twitter-color;
+      font-size: 5rem !important;
+
+      @include respond(phone) {
+        left: 7% !important;
+        top: 5% !important;
+      }
+    }
+  }
+  &__heading > p:first-child {
+    font-size: 6rem;
+    font-weight: 800;
+    margin-bottom: 4rem;
+    @include respond(phone) {
+      font-size: 5rem;
+    }
+  }
+  &__heading > p {
+    font-size: 3rem;
+    font-weight: 700;
+    @include respond(phone) {
+      font-size: 2rem;
+    }
+  }
+  &__form {
+    margin: 3rem 0;
+    display: flex;
+
+    & > button {
+      margin-left: 2rem;
+      padding: 1rem 4rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      font-size: 2rem;
+      @include respond(tab-port) {
+        margin-left: 0rem;
+      }
+    }
+  }
+}

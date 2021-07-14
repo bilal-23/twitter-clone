@@ -3,7 +3,7 @@ import './Feed.scss'
 import FeedHeader from './FeedHeader'
 import Tweetbox from './Tweetbox'
 import Post from './Post'
-import db from '../firebase/firebase';
+import db from '../firebase/firebase'
 import FlipMove from 'react-flip-move'
 
 const Feed = () => {
@@ -11,14 +11,15 @@ const Feed = () => {
 
     useEffect(() => {
         const postCollection = db.collection('posts').orderBy('timestamp', "desc");
-        postCollection.onSnapshot(snapshot => setPosts((snapshot.docs.map(doc => {
-            const postData = {
-                id: doc.id,
-                ...doc.data()
-            }
-            return postData;
-        }))));
-
+        postCollection.onSnapshot(snapshot => {
+            setPosts(snapshot.docs.map(doc => {
+                const postData = {
+                    id: doc.id,
+                    ...doc.data()
+                }
+                return postData;
+            }))
+        });
     }, [])
 
     return (
