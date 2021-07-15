@@ -1,16 +1,17 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import firebase from '../firebase/firebase'
-import './login.scss'
 import { Twitter } from '@material-ui/icons'
 import { Button } from '@material-ui/core'
-import UserContext from '../store/user-context'
 import AlertDialogSlide from './Dialog';
+import './login.scss'
+import { useDispatch } from 'react-redux'
+import { login } from '../store/userSlice'
 
 const Login = () => {
     const [error, setError] = useState("");
     const [showErrorModal, setShowErrorModal] = useState(false);
-    const userCtx = useContext(UserContext);
+    const dispatch = useDispatch();
     const history = useHistory();
 
     const signInHandler = () => {
@@ -19,16 +20,15 @@ const Login = () => {
             .signInWithPopup(provider)
             .then((result) => {
                 /** @type {firebase.auth.OAuthCredential} */
-                const credential = result.credential;
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                const token = credential.accessToken;
-                // The signed-in user info.
                 const user = result.user;
-                userCtx.login({
-                    displayName: user.displayName,
-                    email: user.email,
-                    uid: user.uid
-                });
+                dispatch(login({
+                    uid: user.uid,
+                    user: {
+                        displayName: user.displayName,
+                        email: user.email,
+                        avatar: user.photoURL,
+                    }
+                }))
                 history.push('/')
                 // ...]
             }).catch((error) => {

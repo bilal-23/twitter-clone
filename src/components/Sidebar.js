@@ -1,6 +1,7 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { NavLink, useHistory } from 'react-router-dom';
-import UserContext from '../store/user-context'
+import { logout } from '../store/userSlice';
+import { useDispatch } from 'react-redux'
 import firebase from '../firebase/firebase'
 import useWindowDimensions from '../hooks/use-windowDimensions';
 import SidebarOption from './SidebarOption'
@@ -10,17 +11,17 @@ import "./Sidebar.scss"
 
 const Sidebar = () => {
     const dimension = useWindowDimensions();
-    const userCtx = useContext(UserContext);
     const history = useHistory();
+    const dispatch = useDispatch();
+
 
     const signOutHandler = (e) => {
         e.preventDefault();
         firebase.auth().signOut().then(() => {
-            console.log('signedOut')
-            userCtx.logout();
+            dispatch(logout())
             history.push('/login')
         }).catch((error) => {
-            console.log(error);
+            alert(error.message);
         });
     }
     return (
@@ -48,8 +49,8 @@ const Sidebar = () => {
                 <NavLink to='/profile' activeClassName="activeNav">
                     <SidebarOption key='7' text='profile' Icon={PermIdentity} />
                 </NavLink>
-                <NavLink to='/signout' onClick={signOutHandler} activeClassName="activeNav">
-                    <SidebarOption key='8' text='Sign out' Icon={ExitToApp} />
+                <NavLink to='/logout' onClick={signOutHandler} activeClassName="activeNav">
+                    <SidebarOption key='8' text='Log out' Icon={ExitToApp} />
                 </NavLink>
             </ul>
             {dimension.width > 1250 && <Button htmlFor="tweetInput" variant="outlined" className="sidebar__button">tweet</Button>}

@@ -1,28 +1,29 @@
 import { Avatar } from '@material-ui/core';
-import React, { useContext } from 'react';
-import UserContext from '../store/user-context';
+import React from 'react';
+import { useSelector } from 'react-redux'
 import "./Tweetbox.scss";
 import TweetForm from './TweetForm';
 import { db } from '../firebase/firebase';
 
 
 const Tweetbox = () => {
-    const userCtx = useContext(UserContext)
+    const { displayName, email, avatar } = useSelector(state => state.user.user);
+
     const postTweetHandler = (text, image = "") => {
         db.collection('posts').add({
-            displayName: userCtx.user.displayName,
-            userName: userCtx.user.email,
+            displayName: displayName,
+            userName: email,
             verified: true,
             text: text,
             image: image,
-            avatar: "https://avatars.githubusercontent.com/u/71442068?v=4",
+            avatar: avatar,
             timestamp: Date.now()
         })
     }
 
     return (
         <div className="tweetbox">
-            <Avatar src="https://avatars.githubusercontent.com/u/71442068?v=4" className="tweetbox__avatar" />
+            <Avatar src={avatar} className="tweetbox__avatar" />
             <TweetForm postTweet={postTweetHandler} />
         </div>
     )

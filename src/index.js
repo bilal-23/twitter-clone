@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom'
-import UserProvider from './store/UserProvider'
+import { Provider } from 'react-redux'
+import { store } from './store/store'
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <UserProvider>
+      <Provider store={store}>
         <App />
-      </UserProvider>
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
