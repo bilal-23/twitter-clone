@@ -36,8 +36,8 @@ const UserProvider = (props) => {
     const userContext = {
         user: user.user,
         isLoggedIn: user.isLoggedIn,
-        logIn: logInHandler,
-        logOut: logOutHandler
+        login: logInHandler,
+        logout: logOutHandler
     }
 
     return (

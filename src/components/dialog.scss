@@ -1,0 +1,18 @@
+@import "../styles/variables";
+
+.dialog {
+  position: absolute !important;
+}
+.dialog__button {
+  font-size: 1.5rem !important;
+  padding: 1rem 3rem !important;
+  color: white !important;
+  background-color: $twitter-color !important ;
+  border-radius: 3rem !important;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.MuiTypography-root {
+  font-size: 2rem !important;
+}

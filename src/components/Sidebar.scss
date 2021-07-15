@@ -2,6 +2,7 @@
 @import "../styles/mixins";
 
 .sidebar {
+  list-style: none;
   position: sticky;
   top: 0;
   display: flex;
@@ -58,4 +59,7 @@
   &:hover {
     background-color: $twitter-color-dark !important;
   }
+}
+.activeNav {
+  color: $twitter-color;
 }

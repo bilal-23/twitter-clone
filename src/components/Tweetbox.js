@@ -1,15 +1,17 @@
 import { Avatar } from '@material-ui/core';
-import React from 'react'
+import React, { useContext } from 'react';
+import UserContext from '../store/user-context';
 import "./Tweetbox.scss";
 import TweetForm from './TweetForm';
-import db from '../firebase/firebase';
+import { db } from '../firebase/firebase';
 
 
 const Tweetbox = () => {
+    const userCtx = useContext(UserContext)
     const postTweetHandler = (text, image = "") => {
         db.collection('posts').add({
-            displayName: "Bilal",
-            userName: "bilalmansuri",
+            displayName: userCtx.user.displayName,
+            userName: userCtx.user.email,
             verified: true,
             text: text,
             image: image,

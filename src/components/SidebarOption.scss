@@ -1,6 +1,11 @@
 @import "../styles/variables";
 
+a {
+  text-decoration: none;
+  color: black;
+}
 .sidebarOption {
+  text-decoration: none;
   padding: 1rem;
   gap: 1rem;
   display: flex;
@@ -23,8 +28,5 @@
     background-color: $twitter-background;
     color: $twitter-color;
     border-radius: 3rem;
-  }
-  &--active {
-    color: $twitter-color;
   }
 }

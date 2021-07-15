@@ -3,7 +3,7 @@ import './Feed.scss'
 import FeedHeader from './FeedHeader'
 import Tweetbox from './Tweetbox'
 import Post from './Post'
-import db from '../firebase/firebase'
+import { db } from '../firebase/firebase'
 import FlipMove from 'react-flip-move'
 
 const Feed = () => {

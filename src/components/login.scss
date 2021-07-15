@@ -78,22 +78,26 @@
     margin: 3rem 0;
     display: flex;
 
-    & > button {
-      margin-left: 2rem;
-      padding: 1rem 4rem;
-      border-radius: 2rem;
-      cursor: pointer;
-      border: none;
-      outline: none;
-      font-size: 2rem;
-      background-color: $twitter-color;
-      color: white;
-      font-weight: 500;
-      letter-spacing: 1px;
+    & > .button {
+      text-transform: none !important;
+      margin-left: 2rem !important;
+      padding: 1rem 4rem !important;
+      border-radius: 3rem !important;
+      cursor: pointer !important;
+      border: none !important;
+      outline: none !important;
+      font-size: 2rem !important;
+      background-color: $twitter-color !important;
+      color: white !important;
+      font-weight: 500 !important;
+      letter-spacing: 1px !important;
       @include respond(tab-port) {
-        margin: 0 auto;
-        width: 100%;
+        margin: 0 auto !important;
+        width: 100% !important;
       }
     }
   }
+}
+.alertDialogBox {
+  position: absolute !important;
 }
