@@ -1,18 +1,20 @@
-import { Avatar } from '@material-ui/core';
 import React from 'react';
 import { useSelector } from 'react-redux'
-import "./Tweetbox.scss";
-import TweetForm from './TweetForm';
 import { db } from '../firebase/firebase';
+import { Avatar } from '@material-ui/core';
+import TweetForm from './TweetForm';
+import "./Tweetbox.scss";
 
 
 const Tweetbox = () => {
-    const { displayName, email, avatar } = useSelector(state => state.user.user);
+    const { displayName, avatar, userName } = useSelector(state => state.user.user);
+    const uid = useSelector(state => state.user.uid);
 
     const postTweetHandler = (text, image = "") => {
         db.collection('posts').add({
             displayName: displayName,
-            userName: email,
+            userName: userName,
+            uid: uid,
             verified: true,
             text: text,
             image: image,

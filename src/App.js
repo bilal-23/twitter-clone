@@ -1,38 +1,63 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
-import firebase from './firebase/firebase'
 import { useDispatch, useSelector } from 'react-redux';
-import { login, logout } from './store/userSlice';
+import { setUid, login, logout } from './store/userSlice';
+import firebase, { db } from './firebase/firebase'
+import useWindowDimensions from './hooks/use-windowDimensions';
+import AlertDialogSlide from './components/Dialog';
 import Sidebar from './components/Sidebar';
 import Feed from './components/Feed';
 import Widgets from './components/Widgets';
 import Login from './components/Login';
-import useWindowDimensions from './hooks/use-windowDimensions';
 import './App.scss';
 
 function App() {
   const dimensions = useWindowDimensions();
   const history = useHistory();
   const dispatch = useDispatch();
-  const uid = useSelector(state => state.user.uid)
+  const [error, setError] = useState("");
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const isLoggedIn = useSelector(state => state.user.isLoggedIn)
+
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        dispatch(login({
+        //get uid from firebase google auth
+        dispatch(setUid({
           uid: user.uid,
-          user: {
-            displayName: user.displayName,
-            email: user.email,
-            avatar: user.photoURL,
-          }
         }))
-        history.push('/')
+        //search for user with this uid in firestore user collection
+        db.collection('users').doc(user.uid).get().then((doc) => {
+          if (doc.exists) {
+            //if user exist dispatch login
+            const userData = doc.data();
+            dispatch(login({
+              uid: user.uid,
+              user: {
+                userName: userData.userName,
+                displayName: userData.displayName,
+                email: userData.email,
+                avatar: userData.avatar,
+              },
+            }))
+
+          } else {
+            throw new Error(`Something went wrong ! Sign in again`)
+          }
+        }).catch((error) => {
+          setError(error);
+          setShowErrorModal(true);
+        })
+
       } else {
         dispatch(logout());
       }
     });
   }, [history, dispatch])
+
+
+
 
   return (
     <Switch>
@@ -40,15 +65,19 @@ function App() {
         <Redirect to="/home" />
       </Route>
       <Route path="/home" exact>
-        {!uid && <Redirect to="/login" />}
-        {uid && <div className="app">
-          <Sidebar />
-          <Feed />
-          {dimensions.width > 900 && <Widgets />}
-        </div>}
+        {!isLoggedIn && <Redirect to="/login" />}
+        {isLoggedIn &&
+          <div className="app">
+            {showErrorModal && <AlertDialogSlide alertText={error.message} closeModal={setShowErrorModal} />}
+            <Sidebar />
+            <Feed />
+            {dimensions.width > 900 && <Widgets />}
+          </div>
+        }
       </Route>
       <Route path="/login" exact>
-        <Login />
+        {isLoggedIn && <Redirect to="/home" />}
+        {!isLoggedIn && <Login />}
       </Route>
     </Switch>
   );

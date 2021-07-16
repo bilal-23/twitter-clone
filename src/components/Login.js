@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import firebase from '../firebase/firebase'
+import { useDispatch } from 'react-redux'
+import { login } from '../store/userSlice'
+import firebase, { db } from '../firebase/firebase'
 import { Twitter } from '@material-ui/icons'
 import { Button } from '@material-ui/core'
 import AlertDialogSlide from './Dialog';
 import './login.scss'
-import { useDispatch } from 'react-redux'
-import { login } from '../store/userSlice'
 
 const Login = () => {
     const [error, setError] = useState("");
     const [showErrorModal, setShowErrorModal] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
+
 
     const signInHandler = () => {
         var provider = new firebase.auth.GoogleAuthProvider();
@@ -21,12 +22,47 @@ const Login = () => {
             .then((result) => {
                 /** @type {firebase.auth.OAuthCredential} */
                 const user = result.user;
+                //searching for user in users collection with this uid
+                db.collection('users').doc(user.uid).get().then((doc) => {
+                    if (doc.exists) {
+                        //if user exist dispatch login
+                        const userData = doc.data();
+                        dispatch(login({
+                            uid: user.uid,
+                            user: {
+                                userName: userData.userName,
+                                displayName: userData.displayName,
+                                email: userData.email,
+                                avatar: userData.avatar,
+                            },
+                        }))
+                    } else {
+                        //user dont exist, create new user - 
+                        db.collection("users").doc(user.uid).set({
+                            FullName: user.displayName,
+                            avatar: user.photoURL,
+                            userName: user.displayName.split(" ")[0] + Math.random().toFixed(3) * 1000 + "",
+                            email: user.email,
+                            uid: user.uid,
+                            displayName: user.displayName.split(" ")[0]
+                        })
+                            .catch((error) => {
+                                throw new Error(error);
+                            });
+
+                    }
+                }).catch((error) => {
+                    throw new Error(error);
+                })
+
+                //login 
                 dispatch(login({
                     uid: user.uid,
                     user: {
                         displayName: user.displayName,
                         email: user.email,
                         avatar: user.photoURL,
+                        userName: user.displayName.split(" ")[0]
                     }
                 }))
                 history.push('/')
@@ -37,6 +73,7 @@ const Login = () => {
                 setShowErrorModal(true);
             });
     }
+
 
     return (
         <>

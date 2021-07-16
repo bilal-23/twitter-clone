@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import './Feed.scss'
+import FlipMove from 'react-flip-move'
+import { db } from '../firebase/firebase'
 import FeedHeader from './FeedHeader'
 import Tweetbox from './Tweetbox'
 import Post from './Post'
-import { db } from '../firebase/firebase'
-import FlipMove from 'react-flip-move'
+import './Feed.scss'
 
 const Feed = () => {
     const [posts, setPosts] = useState([]);
@@ -20,6 +20,8 @@ const Feed = () => {
                 return postData;
             }))
         });
+
+        return (() => setPosts())
     }, [])
 
     return (

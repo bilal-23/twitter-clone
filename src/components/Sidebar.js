@@ -1,12 +1,12 @@
 import React from 'react'
 import { NavLink, useHistory } from 'react-router-dom';
-import { logout } from '../store/userSlice';
 import { useDispatch } from 'react-redux'
+import { logout } from '../store/userSlice';
 import firebase from '../firebase/firebase'
 import useWindowDimensions from '../hooks/use-windowDimensions';
-import SidebarOption from './SidebarOption'
 import { Twitter, Home, Search, NotificationsNone, MailOutline, BookmarkBorder, ListAlt, PermIdentity, ExitToApp } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
+import SidebarOption from './SidebarOption'
 import "./Sidebar.scss"
 
 const Sidebar = () => {
