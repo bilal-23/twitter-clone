@@ -13,6 +13,7 @@ const Login = () => {
     const [showErrorModal, setShowErrorModal] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
+    const randomNum = Math.random().toFixed(3) * 1000;
 
 
     const signInHandler = () => {
@@ -41,7 +42,7 @@ const Login = () => {
                         db.collection("users").doc(user.uid).set({
                             FullName: user.displayName,
                             avatar: user.photoURL,
-                            userName: user.displayName.split(" ")[0] + Math.random().toFixed(3) * 1000 + "",
+                            userName: user.displayName.split(" ")[0] + randomNum + "",
                             email: user.email,
                             uid: user.uid,
                             displayName: user.displayName.split(" ")[0]
@@ -62,7 +63,7 @@ const Login = () => {
                         displayName: user.displayName,
                         email: user.email,
                         avatar: user.photoURL,
-                        userName: user.displayName.split(" ")[0]
+                        userName: user.displayName.split(" ")[0] + randomNum + ""
                     }
                 }))
                 history.push('/')
