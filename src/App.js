@@ -42,8 +42,6 @@ function App() {
               },
             }))
 
-          } else {
-            throw new Error(`Something went wrong ! Sign in again`)
           }
         }).catch((error) => {
           setError(error);
