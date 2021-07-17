@@ -15,7 +15,7 @@ const Tweetbox = () => {
             displayName: displayName,
             userName: userName,
             uid: uid,
-            verified: true,
+            verified: false,
             text: text,
             image: image,
             avatar: avatar,

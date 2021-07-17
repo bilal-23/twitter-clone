@@ -9,18 +9,21 @@ import Sidebar from './components/Sidebar';
 import Feed from './components/Feed';
 import Widgets from './components/Widgets';
 import Login from './components/Login';
+import Preloader from './components/UI/Preloader'
 import './App.scss';
 
 function App() {
   const dimensions = useWindowDimensions();
   const history = useHistory();
   const dispatch = useDispatch();
+  const [showPreloader, setShowPreloader] = useState(true);
   const [error, setError] = useState("");
   const [showErrorModal, setShowErrorModal] = useState(false);
   const isLoggedIn = useSelector(state => state.user.isLoggedIn)
 
 
   useEffect(() => {
+    setShowPreloader(true);
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         //get uid from firebase google auth
@@ -41,15 +44,19 @@ function App() {
                 avatar: userData.avatar,
               },
             }))
-
           }
+          history.push('/home')
+          setShowPreloader(false);
+
         }).catch((error) => {
           setError(error);
+          setShowPreloader(false);
           setShowErrorModal(true);
         })
 
       } else {
         dispatch(logout());
+        setShowPreloader(false);
       }
     });
   }, [history, dispatch])
@@ -63,6 +70,7 @@ function App() {
         <Redirect to="/home" />
       </Route>
       <Route path="/home" exact>
+        {showPreloader && <Preloader />}
         {!isLoggedIn && <Redirect to="/login" />}
         {isLoggedIn &&
           <div className="app">
@@ -73,10 +81,13 @@ function App() {
           </div>
         }
       </Route>
+
       <Route path="/login" exact>
+        {showPreloader && <Preloader />}
         {isLoggedIn && <Redirect to="/home" />}
         {!isLoggedIn && <Login />}
       </Route>
+
     </Switch>
   );
 }
