@@ -1,6 +1,7 @@
 # Twitter Clone 🛫🛬�
 
 Twitter Clone made with Reactjs. 
+It's not the exact clone, but it do have the functionality to tweet.
 
 ## Features 💡 
 
