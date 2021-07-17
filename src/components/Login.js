@@ -60,7 +60,7 @@ const Login = () => {
                 dispatch(login({
                     uid: user.uid,
                     user: {
-                        displayName:ser.displayName.split(" ")[0],
+                        displayName:user.displayName.split(" ")[0],
                         email: user.email,
                         avatar: user.photoURL,
                         userName: user.displayName.split(" ")[0] + randomNum + ""
