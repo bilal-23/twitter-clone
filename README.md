@@ -69,5 +69,5 @@ Once your server has started, go to this url `http://localhost:3000/` and you wi
 - [ReactJS](https://reactjs.org) - Javascript library
 - [React-router](https://www.npmjs.com/package/react-router) - Routing tool
 - [SCSS](https://sass-lang.com/) - CSS Preprocessor
-- [Redux] - Global state management tool
+- [Redux](https://redux-toolkit.js.org) - Global state management tool
 
